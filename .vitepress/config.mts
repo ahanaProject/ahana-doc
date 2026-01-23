@@ -41,11 +41,8 @@ export default defineConfig({
       ],
       '/src/guide/electron/': [
         {
-          text: '开始',
-          items: [
-            { text: '介绍', link: '/src/guide/started/introduction/' },
-            { text: '快速开始', link: '/src/guide/started/quick-start/' },
-          ],
+          text: '入门',
+          items: [{ text: '开始使用', link: '/src/guide/electron/start/' }],
         },
       ],
     },
