@@ -41,3 +41,7 @@ test-results/
 playwright-report/
 
 .vitepress/cache
+
+ahana-doc-dist
+ahana-doc-dist
+dist

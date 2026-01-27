@@ -3,15 +3,18 @@ import { defineConfig } from 'vitepress';
 export default defineConfig({
   title: 'Ahana Awesome Platform',
   description: '框架使用文档',
+  // outDir: './.vitepress/ahana-doc-dist',
   themeConfig: {
     nav: [
       { text: '首页', link: '/src' },
       {
-        text: '组件库',
+        text: '框架库',
         items: [
-          { text: 'Vue2/Vue3', link: '/v2/' },
-          { text: 'Electron', link: '/src/guide/electron' },
-          { text: 'Uni', link: '/v1/' },
+          { text: 'Vue2', link: '/src/guide/vue2/' },
+          { text: 'Vue3', link: '/src/guide/vue3/' },
+          { text: 'React', link: '/src/guide/react/' },
+          { text: 'Electron', link: '/src/guide/electron/' },
+          { text: 'Uni', link: '/src/guide/uni/' },
         ],
       },
       {
@@ -28,7 +31,6 @@ export default defineConfig({
         ],
       },
     ],
-
     sidebar: {
       '/src/guide/started/': [
         {
@@ -42,7 +44,18 @@ export default defineConfig({
       '/src/guide/electron/': [
         {
           text: '入门',
-          items: [{ text: '开始使用', link: '/src/guide/electron/start/' }],
+          items: [{ text: '开始使用', link: '/src/guide/electron/' }],
+        },
+        {
+          text: '使用',
+          items: [
+            { text: '控制器', link: '/src/guide/electron/controller' },
+            { text: 'IPC通信', link: '/src/guide/electron/ipc' },
+            { text: '日志', link: '/src/guide/electron/logger' },
+            { text: '数据库', link: '/src/guide/electron/orm' },
+            { text: '系统操作', link: '/src/guide/electron/platform' },
+            { text: '响应报文', link: '/src/guide/electron/response-factory' },
+          ],
         },
       ],
     },
