@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress';
 export default defineConfig({
   title: 'Ahana Awesome Platform',
   description: '框架使用文档',
-  // outDir: './.vitepress/ahana-doc-dist',
+  outDir: './.vitepress/ahana-doc-dist',
   themeConfig: {
     nav: [
       { text: '首页', link: '/src' },
@@ -29,6 +29,10 @@ export default defineConfig({
           { text: '7.Vue代码规范', link: '/src/guide/code-norm/vue' },
           { text: '9.Git规范', link: '/src/guide/code-norm/git' },
         ],
+      },
+      {
+        text: 'SDK',
+        items: [{ text: 'eslint', link: '/src/guide/sdk/eslint' }],
       },
     ],
     sidebar: {
@@ -56,6 +60,16 @@ export default defineConfig({
             { text: '系统操作', link: '/src/guide/electron/platform' },
             { text: '响应报文', link: '/src/guide/electron/response-factory' },
           ],
+        },
+      ],
+      '/src/guide/sdk/': [
+        {
+          text: '入门',
+          items: [{ text: '开始使用', link: '/src/guide/sdk/' }],
+        },
+        {
+          text: '开始',
+          items: [{ text: 'ESLint', link: '/src/guide/sdk/eslint/' }],
         },
       ],
     },
