@@ -2,7 +2,7 @@
 
 ## 注册IPC通信
 
-找到主线程窗口配置的preload引入文件
+找到主线程窗口配置的preload引入文件，设置如下参数
 
 ```ts
 import type { IpcRendererEvent } from 'electron';
@@ -143,4 +143,57 @@ async function loadData() {
     }
   }
 }
+```
+
+## 使用示例
+
+1. 在主线程先定义控制器，参考控制器定义
+2. 使用
+
+```ts
+// 1. 渲染层调用主线程
+// 1.1 渲染层
+const addUser = async () => {
+  try {
+    const info = await window.ipcAPI?.invokeOperation<
+      {
+        userName: string;
+        passWord: string;
+      },
+      {
+        userName: string;
+        passWord: string;
+      }
+    >(
+      'user:add',
+      {
+        userName: '12',
+        passWord: '123',
+      },
+      'sql'
+    );
+  } catch (err) {
+    console.log(err, 'errerrerrerrerr addUser');
+  }
+};
+
+// 1.2 主线程
+@RestController('user')
+class UserController {
+  @RequestMapping('add')
+  async addUser(event: IpcMainInvokeEvent, params: AddUserRequest, type: string) {}
+}
+
+// ————————————————————————————————————————————————————————————————————————
+
+// 2. 主线程调用渲染层
+// 2.1 渲染层
+onMounted(() => {
+  window.ipcAPI?.on('update-available', (event: Event, versionInfo: unknown) => {
+    console.log('新版本可用:', versionInfo);
+  });
+});
+
+// 2.2 主线层 mainWindow 为当前渲染层窗口实例
+mainWindow.webContents.send('update-available', params);
 ```

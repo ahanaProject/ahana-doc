@@ -46,3 +46,74 @@ import './UserController';
 
 示例： controllerRoot: () => import('../common/controllers/index.js')
 :::
+
+## 使用示例
+
+### 1. 控制层
+
+- 如果不需要数据库，则只用 1、2
+- 接口名约定：RestController:RequestMapping 例如：user:add
+
+:::info
+UserService 是业务逻辑层这里处理具体业务逻辑
+:::
+
+```ts
+// 1. 定义控制层
+import type { IpcMainInvokeEvent } from 'electron';
+import type { ResponseError } from '@ahana-awesome-platform/shared-types';
+import { RestController, RequestMapping } from '@ahana-awesome-platform/ahana-electron-sdk/controller';
+import UserService from '../services/UserService';
+
+/**
+ *  用户控制器
+ */
+@RestController('user')
+class UserController {
+  userService: UserService;
+  constructor() {
+    this.userService = new UserService();
+  }
+
+  // 创建用户
+  @RequestMapping('add')
+  async addUser(event: IpcMainInvokeEvent, params: AddUserRequest, type: string) {
+    // 注册处理函数
+    try {
+      const result = await this.userService.addUser(params, type);
+      return Factory.successResponse(result);
+    } catch (error) {
+      return Factory.errorResponse(error as ResponseError);
+    }
+  }
+}
+
+export default UserController;
+```
+
+### 3. 业务逻辑层
+
+:::info
+UserDtos 是传输数据定义的接口
+
+UserDao 是映射数据库
+:::
+
+```ts
+import type { AddUserRequest } from 'UserDto';
+
+export default class UserService {
+  // 创建用户
+  async addUser(params: AddUserRequest, type: string) {
+    try {
+      return {};
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        throw new Error(`添加用户失败: ${err.message}`);
+      } else {
+        throw new Error(`添加用户失败: ${String(err)}`);
+      }
+    }
+  }
+}
+```

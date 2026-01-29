@@ -81,11 +81,6 @@ Electron 应用典型架构：
 
 VITE_SERVER_URL 是渲染线程的服务地址，根据开发环境进行更改
 
-- test
-
-  - VITE_APP_ENV=test
-  - VITE_DISTDIR='dist/test'
-
 - production
   - VITE_APP_ENV=production
   - VITE_DISTDIR='dist/production'
@@ -114,3 +109,19 @@ windowOptions：         主线程窗口配置
 ```
 
 windowOptions [配置参考](https://www.electronjs.org/docs/latest/api/browser-window#new-browserwindowoptions)
+
+## 全局配置
+
+- src\apps\ahana-electron-app\configs\app.config.ts
+
+```bash
+electronConfig
+  sqliteConfig
+    dbName
+    encryptionKey
+  logConfig
+    APPNAME
+    ENCRYPTION_KEY
+  isDev
+  appName
+```

@@ -4,6 +4,7 @@ export default defineConfig({
   title: 'Ahana Awesome Platform',
   description: '框架使用文档',
   outDir: './.vitepress/ahana-doc-dist',
+  base: '/',
   themeConfig: {
     nav: [
       { text: '首页', link: '/src' },
@@ -51,8 +52,9 @@ export default defineConfig({
           items: [{ text: '开始使用', link: '/src/guide/electron/' }],
         },
         {
-          text: '使用',
+          text: 'SDK使用',
           items: [
+            { text: '安装', link: '/src/guide/electron/install' },
             { text: '控制器', link: '/src/guide/electron/controller' },
             { text: 'IPC通信', link: '/src/guide/electron/ipc' },
             { text: '日志', link: '/src/guide/electron/logger' },
