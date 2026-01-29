@@ -115,13 +115,13 @@ windowOptions [配置参考](https://www.electronjs.org/docs/latest/api/browser-
 - src\apps\ahana-electron-app\configs\app.config.ts
 
 ```bash
-electronConfig
-  sqliteConfig
-    dbName
-    encryptionKey
-  logConfig
-    APPNAME
-    ENCRYPTION_KEY
-  isDev
-  appName
+electronConfig          electronConfig配置
+  sqliteConfig          SQLite数据库配置
+    dbName              数据库文件名（不带扩展名）
+    encryptionKey       数据库加密密钥
+  logConfig             日志配置
+    appName             应用名称，用于日志记录
+    encryptionKey       日志加密密钥 16位（如果需要加密日志文件）
+  isDev                 是否处于开发模式
+  appName               应用名称
 ```
